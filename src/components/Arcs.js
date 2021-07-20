@@ -16,7 +16,7 @@ class Arcs extends Component {
     }
 
     componentWillMount() {
-        fetch('https://one-piece-encyclo-api.herokuapp.com/api/arcs')
+        fetch('http://localhost:5000/api/arcs')
             .then(res => res.json())
             .then(data => {
                 let arr = []
@@ -31,11 +31,11 @@ class Arcs extends Component {
 
     }
 
-    setLink = (arc) => {
+    setLink = (id) => {
         if(this.props.login) {
             return {
                 pathname: '/arcs/arc',
-                state: arc
+                state: {id}
             }
         } else {
             return {
@@ -65,7 +65,7 @@ class Arcs extends Component {
                                     initial={{opacity:0, scale:0.8}}
                                     animate={{opacity: 1, scale:1}}
                                     transition={{delay: 0.2+(i*0.1)}}>
-                                        <Link to={this.setLink(arc)}>
+                                        <Link to={this.setLink(arc._id)}>
                                             <div className="well text-center m-4 py-3 bg-primary rounded">
                                                 <img src={arc.poster} alt={arc.title} height='250' width='200'  style={{objectFit: 'cover'}}/>
                                                 <p className="d-block h5 mt-1 text-white">{arc.title}</p>

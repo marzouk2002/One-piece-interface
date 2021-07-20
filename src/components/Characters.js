@@ -24,7 +24,7 @@ class Characters extends Component {
                 data.forEach(char => {
                     arr.push({
                         ...char._doc,
-                        gallery:char.gallery
+                        picture:char.picture
                     })
                 });
                 this.setState({characters : arr})
@@ -32,11 +32,11 @@ class Characters extends Component {
 
     }
 
-    setLink = (char) => {
+    setLink = (id) => {
         if(this.props.login) {
             return {
                 pathname:'/characters/character',
-                state:char
+                state:{id}
             }
         } else {
             return {
@@ -66,9 +66,9 @@ class Characters extends Component {
                         initial={{opacity:0, scale:0.8}}
                         animate={{opacity: 1, scale:1}}
                         transition={{delay: 0.2+(i*0.1)}}>
-                            <Link to={this.setLink(char)}>
+                            <Link to={this.setLink(char._id)}>
                                 <div className="well text-center m-4 py-3 bg-primary rounded">
-                                    <img src={char.gallery[0]} alt={char.name}/>
+                                    <img src={char.picture} alt={char.name}/>
                                     <p className="d-block h5 mt-1 text-white">{char.name}</p>
                                 </div>
                             </Link>

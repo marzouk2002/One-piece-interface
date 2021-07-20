@@ -18,12 +18,12 @@ export default function Episode(props) {
 
     return (
         <main>
-            { episode && <>
                 <div className="mt-2 position-absolut">
                     <Link className='text-white' to="/episodes">
                         <i clasName="fas fa-chevron-left ml-1 p-1 h1"></i>
                     </Link>
                 </div>
+            { episode && <>
                 <div className="container bg-primary text-white mt-0 mb-4 mx-auto py-3">
                     <h1 className="pt-1">Episode {episode.number}</h1>
                     <hr/>

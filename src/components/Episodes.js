@@ -16,7 +16,7 @@ class Episodes extends Component {
     }
 
     componentDidMount() {
-        fetch('https://one-piece-encyclo-api.herokuapp.com/api/ep')
+        fetch('http://localhost:5000/api/eps')
             .then(res=>res.json())
             .then(data=>{
                 let arr=[]
@@ -31,11 +31,11 @@ class Episodes extends Component {
 
     }
 
-    setLink = (episode) => {
+    setLink = (id) => {
         if(this.props.login) {
             return {
                 pathname: '/episodes/episode',
-                state: episode
+                state: {id}
             }
         } else {
             return {
@@ -73,7 +73,7 @@ class Episodes extends Component {
                                 transition={{delay: 0.2+(i*0.1)}}>
                                     <div className="h5 well row" >
                                         <div className="col-sm-2  text-center"><p>{episode.number}</p></div>
-                                        <Link className="col-sm-10 text-center text-white" to={this.setLink(episode)}>{episode.title}</Link>
+                                        <Link className="col-sm-10 text-center text-white" to={this.setLink(episode._id)}>{episode.title}</Link>
                                     </div>
                                     <hr/>
                                 </motion.div>)

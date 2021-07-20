@@ -17,7 +17,7 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/characters')
+        fetch('https://one-piece-encyclo-api.herokuapp.com/api/characters')
             .then(res => res.json())
             .then(data => this.setState({characters : data}))
     }

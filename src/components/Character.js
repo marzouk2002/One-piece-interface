@@ -11,10 +11,10 @@ export default function Character(props) {
     const isMember = useSelector(state => state.member)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/character?_id=${selected_id}`)
+        fetch(`https://one-piece-encyclo-api.herokuapp.com/api/character?_id=${selected_id}`)
         .then(res => res.json())
-        .then(data => {
-            setCharacter(data)
+        .then(({_doc, gallery}) => {
+            setCharacter({..._doc, gallery})
         })
     }, [ selected_id ])
 

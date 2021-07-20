@@ -17,19 +17,9 @@ class Characters extends Component {
     }
 
     componentDidMount() {
-        fetch('https://one-piece-encyclo-api.herokuapp.com/api/characters')
-            .then(res=>res.json())
-            .then(data=>{
-                let arr=[]
-                data.forEach(char => {
-                    arr.push({
-                        ...char._doc,
-                        picture:char.picture
-                    })
-                });
-                this.setState({characters : arr})
-            })
-
+        fetch('http://localhost:5000/api/characters')
+            .then(res => res.json())
+            .then(data => this.setState({characters : data}))
     }
 
     setLink = (id) => {

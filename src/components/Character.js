@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import Modal from './layout/Modal'
 import { useSelector } from 'react-redux'
 import Comments from './Comments'
 
 export default function Character(props) {
-    const character = props.location.state
+    const selected_id = props.location.state.id
+    const [ character, setCharacter] = useState(null) 
     const [imgUrl, setImgUrl] = useState(null)
     const isMember = useSelector(state => state.member)
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/character?_id=${selected_id}`)
+        .then(res => res.json())
+        .then(data => {
+            setCharacter(data)
+        })
+    }, [ selected_id ])
+
     return (
-        <main>
-            <div className="mt-2 position-absolut">
+         <main>
+            { character && <><div className="mt-2 position-absolut">
                 <Link className='text-white' to="/characters">
                     <i className="fas fa-chevron-left p-1 h1"></i>
                 </Link>
@@ -36,7 +45,7 @@ export default function Character(props) {
                 <hr style={{clear: 'both', margin: 0}}/>
                 { isMember && <Comments comments={character.comments} contentType='characters' contentId={character._id}/> }
             </div>
-            { imgUrl && <Modal imgUrl={imgUrl} setImgUrl={setImgUrl}/>}
+            { imgUrl && <Modal imgUrl={imgUrl} setImgUrl={setImgUrl}/>}</> }
         </main>
     )
 }

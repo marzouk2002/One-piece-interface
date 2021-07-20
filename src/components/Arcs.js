@@ -16,7 +16,7 @@ class Arcs extends Component {
     }
 
     componentWillMount() {
-        fetch('http://localhost:5000/api/arcs')
+        fetch('https://one-piece-encyclo-api.herokuapp.com/api/arcs')
             .then(res => res.json())
             .then(data => {
                 let arr = []

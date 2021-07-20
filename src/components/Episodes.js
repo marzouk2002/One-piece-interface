@@ -16,7 +16,7 @@ class Episodes extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/eps')
+        fetch('https://one-piece-encyclo-api.herokuapp.com/api/eps')
             .then(res=>res.json())
             .then(data=>{
                 let arr=[]

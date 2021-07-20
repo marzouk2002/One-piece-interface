@@ -9,7 +9,7 @@ export default function Episode(props) {
     const isMember = useSelector(state => state.member)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/ep?_id=${selected_id}`)
+        fetch(`https://one-piece-encyclo-api.herokuapp.com/api/ep?_id=${selected_id}`)
         .then(res => res.json())
         .then(({_doc, poster}) => {
             setEpisode({..._doc, poster})
